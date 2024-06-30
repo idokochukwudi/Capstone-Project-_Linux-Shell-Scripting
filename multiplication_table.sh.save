@@ -55,7 +55,7 @@ prompt_user_input() {
 while true; do
     number=$(prompt_user_input "Enter the number for the multiplication table: ")
 
-    # 2. Ask if they want a full table or a partial table (p = partial table, f = full table)
+# 2. Ask if they want a full table or a partial table (p = partial table, f = full table)
     while true; do
         read -p "Do you want a full table (1-10) or a partial table? (f = full, p = partial): " table_choice
         if [[ $table_choice == "f" ]]; then
@@ -63,6 +63,7 @@ while true; do
             end=10
             break
         elif [[ $table_choice == "p" ]]; then
+        
     # 3. Validate the range inputs and handle invalid or out-of-bound entries.
             start=$(prompt_user_input "Enter the start number of the range: ")
             end=$(prompt_user_input "Enter the end number of the range: ")
@@ -75,30 +76,3 @@ while true; do
             echo "Invalid choice. Please enter 'f' for full or 'p' for partial."
         fi
     done
-
-# 4. Ask the user for the order of the table (ascending or descending).
-    while true; do
-        read -p "Do you want the table in ascending or descending order? (a = ascending, d = descending): " order
-        if [[ $order == "a" || $order == "d" ]]; then
-            break
-        else
-            echo "Invalid choice. Please enter 'a' for ascending or 'd' for descending."
-        fi
-    done
-
-    # 5. Generate and display the multiplication table using both loop styles.
-    echo "Multiplication Table using List Form For Loop:"
-    generate_table_list_form $number $start $end $order
-
-    echo ""
-    echo "Multiplication Table using C-style For Loop:"
-    generate_table_c_style $number $start $end $order
-
-    # 6. Ask the user if they want to repeat the program for another number.
-    read -p "Do you want to generate another table? (y/n): " repeat
-    if [[ $repeat != "y" ]]; then
-        break
-    fi
-done
-
-echo "Goodbye!"
